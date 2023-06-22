@@ -12,3 +12,35 @@
 * {
     box-sizing: border-box;
 }
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .logo {
+    margin-right: 50px;
+  }
+  
+  .socials {
+    display: flex;
+    gap: 10px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+  }
+   
+  .social-icon {
+    fill: white;
+  }

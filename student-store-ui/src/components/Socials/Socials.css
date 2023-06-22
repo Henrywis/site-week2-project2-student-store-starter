@@ -1,0 +1,8 @@
+.socials {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .social-icon {
+    fill: white;
+  }
