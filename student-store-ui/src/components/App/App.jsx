@@ -18,12 +18,13 @@ export default function App() {
     <div className="app">
       <BrowserRouter>
         <main>
-          {/* YOUR CODE HERE! */}
           <Navbar />
-          <Sidebar />
-          <Home />
+          <div className="content-wrapper">
+            <Sidebar />
+            <Home />
+          </div>
         </main>
       </BrowserRouter>
     </div>
-  )
+  );
 }

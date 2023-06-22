@@ -1,0 +1,29 @@
+.sidebar {
+    width: 50px;
+    background: #f2f2f2;
+    padding: 20px;
+    transition: width 0.3s;
+  }
+  
+  .sidebar-open {
+    width: 50%;
+  }
+  
+  .toggle-button {
+    margin-bottom: 20px;
+  }
+  
+  .shopping-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .icons {
+    margin-top: 10px;
+  }
+  
+  .icons button {
+    margin-bottom: 5px;
+  }
+  
