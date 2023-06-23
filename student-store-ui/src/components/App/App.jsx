@@ -39,12 +39,13 @@ export default function App() {
       <BrowserRouter>
         <main>
           <Navbar />
+          <div className="content-wrapper"></div>
+            <Sidebar />
           {/* <div className="content-wrapper"> */}
-          <Banner/>
-          <Sidebar />
+          {/* <Banner/> */}
+          
           {/* </div> */}
           <Home data={data} />
-            <Search />
         </main>
       </BrowserRouter>
     </div>
