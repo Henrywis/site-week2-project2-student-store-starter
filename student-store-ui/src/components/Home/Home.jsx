@@ -10,7 +10,7 @@ import Categories from "../Categories/Categories";
 
 
 export default function Home({ data }) {
-  const products = data || [];
+  // const products = data || [];
 
   // const [showCategories, setShowCategories] = React.useState(false);
 
@@ -23,7 +23,7 @@ export default function Home({ data }) {
       <Banner />
       <Search />
       <Categories />
-      <ProductGrid products={products} />
+      <ProductGrid products={data} />
       <About />
       <Contact />
       <Footer />

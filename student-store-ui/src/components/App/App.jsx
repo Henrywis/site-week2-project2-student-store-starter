@@ -26,7 +26,9 @@ export default function App() {
         const data = await response.json();
 
         setData(data.products);
-        console.log(data.products)
+        // console.log(data.products)
+
+        console.log("Fetched products: ", data.products[0].name);
       } catch (error) {
         console.log("Error fetching products:" , error);
       }
