@@ -12,20 +12,21 @@ import Categories from "../Categories/Categories";
 export default function Home({ data }) {
   const products = data || [];
 
-  const [showCategories, setShowCategories] = React.useState(false);
+  // const [showCategories, setShowCategories] = React.useState(false);
 
-  const handleToggleCategories = () => {
-    setShowCategories(!shownpm, Categories);
-  };
+  // const handleToggleCategories = () => {
+  //   setShowCategories(!shownpm, Categories);
+  // };
 
   return (
     <div className="home">
       <Banner />
       <Search />
-      <div className="hamburger-menu" onClick={handleToggleCategories}>
+      <Categories />
+      {/* <div className="hamburger-menu" onClick={handleToggleCategories}>
         <button className="hamburger-icon">&#9776;</button>
         {showCategories && <Categories />}
-      </div>
+      </div> */}
       <ProductGrid products={products} />
       <About />
       <Contact />
