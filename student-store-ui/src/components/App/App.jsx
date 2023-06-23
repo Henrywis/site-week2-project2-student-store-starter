@@ -6,12 +6,14 @@ import Home from "../Home/Home"
 import Banner from "../Banner/Banner"
 import Search from "../Search/Search"
 import ProductGrid from "../ProductGrid/ProductGrid"
+// import Categories from "../Categories/Categories"
 import About from "../About/About"
 import Contact from "../Contact/Contact"
 import ProductCard from "../ProductCard/ProductCard"
 import Footer from "../Footer/Footer"
 import { useState, useEffect } from "react"
 import "./App.css"
+import Categories from "../Categories/Categories"
 
 export default function App() {
 
@@ -41,11 +43,9 @@ export default function App() {
           <Navbar />
           <div className="content-wrapper"></div>
             <Sidebar />
-          {/* <div className="content-wrapper"> */}
-          {/* <Banner/> */}
-          
-          {/* </div> */}
+          {/* <Categories /> */}
           <Home data={data} />
+
         </main>
       </BrowserRouter>
     </div>

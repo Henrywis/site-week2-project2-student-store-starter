@@ -23,10 +23,6 @@ export default function Home({ data }) {
       <Banner />
       <Search />
       <Categories />
-      {/* <div className="hamburger-menu" onClick={handleToggleCategories}>
-        <button className="hamburger-icon">&#9776;</button>
-        {showCategories && <Categories />}
-      </div> */}
       <ProductGrid products={products} />
       <About />
       <Contact />
