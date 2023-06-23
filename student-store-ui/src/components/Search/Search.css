@@ -1,0 +1,34 @@
+.search-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-form {
+    display: flex;
+    margin-right: 10px;
+  }
+  
+  .search-form input {
+    padding: 8px;
+  }
+  
+  .search-form button {
+    padding: 8px 12px;
+    background-color: #7FFF00;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .my-cart {
+    display: flex;
+  }
+  
+  .my-cart button {
+    padding: 8px 12px;
+    background-color: #7FFF00;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  

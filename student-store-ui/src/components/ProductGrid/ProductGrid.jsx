@@ -6,7 +6,6 @@ import "./ProductGrid.css"
 export default function ProductGrid() {
     return (
       <div className="product-grid">
-        <ProductCard />
         {/* Render more ProductCard components as needed */}
       </div>
     );
