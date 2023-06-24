@@ -18,6 +18,8 @@ import Categories from "../Categories/Categories"
 export default function App() {
 
   const [data, setData] = useState([]);
+  const [prods2, setProds2] = useState([]);
+
 
   useEffect(() => {
     async function fetchMovies() {
@@ -26,6 +28,7 @@ export default function App() {
         const data = await response.json();
 
         setData(data.products);
+        setProds2(data.products)
         // console.log(data.products)
 
         console.log("Fetched products: ", data.products[0].name);
@@ -46,7 +49,7 @@ export default function App() {
           <div className="content-wrapper"></div>
             <Sidebar />
           {/* <Categories /> */}
-          <Home data={data} />
+          <Home data={data} prods2={prods2} setProds2={setProds2}/>
 
         </main>
       </BrowserRouter>
