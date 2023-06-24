@@ -1,0 +1,18 @@
+.contact-container {
+    background-color: white;
+    padding: 20px;
+  }
+  
+  .container-title {
+    font-weight: bold;
+  }
+  
+  .contact-info {
+    margin-top: 10px;
+  }
+  
+  .info-label {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  

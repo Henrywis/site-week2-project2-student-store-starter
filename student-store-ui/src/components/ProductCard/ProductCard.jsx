@@ -1,11 +1,13 @@
 import React from "react";
 import "./ProductCard.css";
+import { Link } from "react-router-dom";
 import { HiOutlineMinusCircle, HiOutlinePlusCircle } from "react-icons/hi";
 
 export default function ProductCard({ product }) {
   return (
     <div className="product-card">
-      <img src={product.image} alt={product.name} />
+      <Link to={`/products/${product.id}`}><img src={product.image} alt={product.name} /></Link>
+      
 
       <div className="product-details">
         <p className="product-name">{product.name}</p>
