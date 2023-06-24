@@ -1,5 +1,5 @@
 import * as React from "react"
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from "../Navbar/Navbar"
 import Sidebar from "../Sidebar/Sidebar"
 import Home from "../Home/Home"
@@ -14,6 +14,7 @@ import Footer from "../Footer/Footer"
 import { useState, useEffect } from "react"
 import "./App.css"
 import Categories from "../Categories/Categories"
+
 
 export default function App() {
 
@@ -49,7 +50,10 @@ export default function App() {
           <div className="content-wrapper"></div>
             <Sidebar />
           {/* <Categories /> */}
-          <Home data={data} prods2={prods2} setProds2={setProds2}/>
+          <Routes>
+            <Route path="/" element={<Home data={data} prods2={prods2} setProds2={setProds2}/>} />
+            <Route path="/products/:id" element={<Home data={data} prods2={prods2} setProds2={setProds2}/>} />
+          </Routes>
 
         </main>
       </BrowserRouter>
