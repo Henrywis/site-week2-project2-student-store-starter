@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { HiOutlineMinusCircle, HiOutlinePlusCircle } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
-export default function ProductCard({ product, handleDecrement, handleIncrement}) {
+export default function ProductCard({ product, quantity, handleDecrement, handleIncrement}) {
   const navigate = useNavigate(); //2. pass parameters that will handle the increment, decrement
-
+  //4. passed the quantity param, so that it inherits and updates, based on onclick functions and not fixed to zero
   const handleProductClick = () => {
     navigate(`/products/${product.id}`);
   };
@@ -29,11 +29,11 @@ export default function ProductCard({ product, handleDecrement, handleIncrement}
         <HiOutlineMinusCircle
           className="minus sign"
           onClick={() => handleDecrement(product.id)} //3. modify the onClick event handler for the "+" and "-" buttons to call functions that handle the increment and decrement operations.
-        />
-        <span className="quantity">0</span>
+        />                                            
+        <span className="quantity">{quantity}</span> 
         <HiOutlinePlusCircle
           className="plus sign"
-          onClick={() => handleIncrement(product.id)}
+          onClick={() => handleIncrement(product.id)} 
         />
       </div>
     </div>
