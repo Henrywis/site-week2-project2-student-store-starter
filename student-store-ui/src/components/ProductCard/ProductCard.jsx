@@ -34,6 +34,7 @@ export default function ProductCard({ product, quantity, handleDecrement, handle
         <HiOutlinePlusCircle
           className="plus sign"
           onClick={() => handleIncrement(product.id)} 
+          
         />
       </div>
     </div>
