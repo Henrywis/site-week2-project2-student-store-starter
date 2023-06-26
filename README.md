@@ -23,12 +23,12 @@ Check out our [deployed Student Store](https://codepath-student-store-demo.surge
 ### Stretch Features
 
 - [x] Users can click to expand the shopping cart in the left navigation.
-- [ ] Users can click the '+' button on a product cart to increment that product in the shopping cart.
-- [ ] Users can click the '-' button on a product cart to decrement that product in the shopping cart.
+- [x] Users can click the '+' button on a product cart to increment that product in the shopping cart.
+- [x] Users can click the '-' button on a product cart to decrement that product in the shopping cart.
 - [ ] The shopping cart displays a table of products, quantities, subtotal, tax, and total.
-- [ ] Your choice! (Replace this bullet explaining what you implemented. Example: Users can leave ratings for products they have purchased.)
+- [x] Made the grids responsive with css (if it counts)
 
-<div style="position: relative; padding-bottom: 50.15625%; height: 0;"><iframe src="https://www.loom.com/embed/48693aed36074874995158d757079a12?sid=88cffb75-55b9-4dbc-ad5c-7dd5763732c0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+<div style="position: relative; padding-bottom: 52.81250000000001%; height: 0;"><iframe src="https://www.loom.com/embed/b47709e6c55344b581ef8716c7b7849c?sid=d472cfe9-5943-4951-a45f-bba6449da732" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 ## *Week 3* Application Features
 
