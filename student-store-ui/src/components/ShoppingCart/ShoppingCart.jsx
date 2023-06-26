@@ -8,14 +8,14 @@ export default function ShoppingCart() {
   const handleIncrement = (productId) => {
     setCartItems((prevItems) => ({
       ...prevItems,
-      [productId]: (prevItems[productId] || 0) + 1
+      [productId]: (prevItems[productId] || 0) + 1  //using updater function for increment that handles whether product exists or not
     }));
   };
 
   const handleDecrement = (productId) => {
     setCartItems((prevItems) => ({
       ...prevItems,
-      [productId]: Math.max((prevItems[productId] || 0) - 1, 0)
+      [productId]: Math.max((prevItems[productId] || 0) - 1, 0) //using updater function for decrement that handles whether product exists or not
     }));
   }; //5. Defined the handleIncrement, handleDecrement functions to be passed in the ProductCard
 
