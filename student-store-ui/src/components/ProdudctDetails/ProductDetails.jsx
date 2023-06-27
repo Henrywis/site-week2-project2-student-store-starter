@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import "./ProductDetail.css";
 import { useEffect, useState } from "react";
 
-export default async function ProductDetail({id}) {
+export default async function ProductDetail({ id, handleDecrement, handleIncrement}) {
 
     try {
         const response = await fetch(`https://codepath-store-api.herokuapp.com/store/${id}`);
@@ -64,6 +64,8 @@ export default async function ProductDetail({id}) {
               productId={product.id}
               showDescription={true}
               key={product.id}
+              handleDecrement={handleDecrement} 
+              handleIncrement={handleIncrement}
             />
           )}
         </div>

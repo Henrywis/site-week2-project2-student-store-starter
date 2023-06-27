@@ -14,16 +14,17 @@ import Footer from "../Footer/Footer"
 import { useState, useEffect } from "react"
 import "./App.css"
 import Categories from "../Categories/Categories"
+import ShoppingCart from "../ShoppingCart/ShoppingCart"
 
 
 export default function App() {
 
   const [data, setData] = useState([]);
   const [prods2, setProds2] = useState([]);
-
+  const [cartItems, setCartItems] = useState({}); //Initializing cart state to be zero or empty
 
   useEffect(() => {
-    async function fetchMovies() {
+    async function fetchProds() {
       try {
         const response = await fetch('https://codepath-store-api.herokuapp.com/store');
         const data = await response.json();
@@ -32,14 +33,29 @@ export default function App() {
         setProds2(data.products)
         // console.log(data.products)
 
-        console.log("Fetched products: ", data.products[0].name);
+        // console.log("Fetched products: ", data.products[0].name);
       } catch (error) {
         console.log("Error fetching products:" , error);
       }
     };
 
-    fetchMovies();
+    fetchProds();
   }, []);
+
+
+  const handleIncrement = (productId) => {
+    setCartItems((prevItems) => ({
+      ...prevItems,
+      [productId]: (prevItems[productId] || 0) + 1  //using updater function for increment that handles whether product exists or not
+    }));
+  };
+
+  const handleDecrement = (productId) => {
+    setCartItems((prevItems) => ({
+      ...prevItems,
+      [productId]: Math.max((prevItems[productId] || 0) - 1, 0) //using updater function for decrement that handles whether product exists or not
+    }));
+  }; //5. Defined the handleIncrement, handleDecrement functions to be passed in the ProductCard
 
 
   return (
@@ -47,16 +63,39 @@ export default function App() {
       <BrowserRouter>
         <main>
           <Navbar />
-          <div className="content-wrapper"></div>
-            <Sidebar />
-          {/* <Categories /> */}
-          <Routes>
-            <Route path="/" element={<Home data={data} prods2={prods2} setProds2={setProds2}/>} />
-            <Route path="/products/:id" element={<Home data={data} prods2={prods2} setProds2={setProds2}/>} />
-          </Routes>
-
+          <div className="content-wrapper">
+            <Sidebar cartItems={cartItems} />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Home
+                    data={data}
+                    prods2={prods2}
+                    setProds2={setProds2}
+                    handleDecrement={handleDecrement}
+                    handleIncrement={handleIncrement}
+                    cartItems={cartItems}
+                  />
+                }
+              />
+              <Route
+                path="/shopping-cart"
+                element={
+                  <ShoppingCart
+                    products={data}
+                    handleDecrement={handleDecrement}
+                    handleIncrement={handleIncrement}
+                    cartItems={cartItems}                   // Pass cartItems and setCartItems to ShoppingCart
+                    setCartItems={setCartItems}
+                  />
+                }
+              />
+            </Routes>
+          </div>
+          <Footer />
         </main>
       </BrowserRouter>
     </div>
   );
-} 
+}

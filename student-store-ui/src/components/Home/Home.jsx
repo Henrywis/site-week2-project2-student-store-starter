@@ -12,17 +12,11 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 
-export default function Home({ data, prods2, setProds2}) {
+export default function Home({ data, prods2, setProds2, handleDecrement, handleIncrement, cartItems}) {
 
   const id = useParams().id;
   const [product, setProduct] = React.useState(null)
-  // const products = data || [];
 
-  // const [showCategories, setShowCategories] = React.useState(false);
-
-  // const handleToggleCategories = () => {
-  //   setShowCategories(!shownpm, Categories);
-  // };
     useEffect(() => {
         async function fetchProds() {
           
@@ -50,7 +44,7 @@ export default function Home({ data, prods2, setProds2}) {
       ( 
       <>
       
-      <ProductGrid products={data} prods2={prods2} setProds2={setProds2} />
+      <ProductGrid products={data} prods2={prods2} setProds2={setProds2} handleDecrement={handleDecrement}  handleIncrement={handleIncrement} cartItems={cartItems}/>
     <About />
     <Contact />
     <Footer />

@@ -2,33 +2,24 @@ import React, { useState } from "react";
 import "./ShoppingCart.css";
 import ProductCard from "../ProductCard/ProductCard";
 
-export default function ShoppingCart({products}) {
-  const [cartItems, setCartItems] = useState({}); //Initializing the state of the shopping cart to empty (zero), umtil theres an increment
-
-  const handleIncrement = (productId) => {
-    setCartItems((prevItems) => ({
-      ...prevItems,
-      [productId]: (prevItems[productId] || 0) + 1  //using updater function for increment that handles whether product exists or not
-    }));
-  };
-
-  const handleDecrement = (productId) => {
-    setCartItems((prevItems) => ({
-      ...prevItems,
-      [productId]: Math.max((prevItems[productId] || 0) - 1, 0) //using updater function for decrement that handles whether product exists or not
-    }));
-  }; //5. Defined the handleIncrement, handleDecrement functions to be passed in the ProductCard
-
-
+export default function ShoppingCart({ products, handleIncrement, handleDecrement, cartItems, setCartItems }) {
+    //receives cartItems, setCartItems as props from App.jsx
   const getProductById = (productId) => {
-    return products.find((product) => product.id === productId);
+    if (products && products.length > 0) {
+      return products.find((product) => product.id === productId);    //added a null check to ensure that the products array exists and has items before calling the find method
+      }
+    return null;
   };
+      
 
   const calculateSubtotal = () => {
+    console.log("Products:", products); 
+    
     let subtotal = 0;
     Object.keys(cartItems).forEach((productId) => {
       const product = getProductById(productId);
-      const cost = product.price * cartItems[productId];
+    //   const cost = product.price * cartItems[productId];   //flagged error because product getProductById returns undefined for some product, hence check if exists first
+      const cost = product ? product.price * cartItems[productId] : 0;  //this fix checks if product is defined
       subtotal += cost;
     });
     return subtotal;
@@ -45,20 +36,14 @@ export default function ShoppingCart({products}) {
     return subtotal + taxes;
   };
 
-//   return (
-//     <div className="shopping-cart">
-//       <h2>Shopping Cart</h2>
-//       {Object.keys(cartItems).map((productId) => (
-//         <ProductCard
-//           key={productId}
-//           product={product}
-//           quantity={cartItems[productId]}
-//           handleIncrement={handleIncrement}
-//           handleDecrement={handleDecrement}
-//         />
-//       ))}
-//     </div>
-//   );
+//   const [cartItems, setCartItems] = useState(() => {
+//     const initialCartItems = {};
+//     products.forEach((product) => {
+//       initialCartItems[product.id] = 0; // Initialize quantity to 0 for each product
+//     });
+//     return initialCartItems;
+//   });
+
 
 
 return (
@@ -81,17 +66,32 @@ return (
               {/* Generate rows for each item in the cart */}
               {Object.keys(cartItems).map((productId) => {
                 const item = cartItems[productId];
-                const product = getProductById(productId); // Replaced with my own function to get product by ID (where it eas fetched by product id)
-                const cost = product.price * item;
-                return (
-                  <tr key={productId}>
-                    <td>{product.name}</td>
-                    <td>{item}</td>
-                    <td>${product.price.toFixed(2)}</td>
-                    <td>${cost.toFixed(2)}</td>
-                  </tr>
-                );
-              })}
+                const product = getProductById(productId);                               // Replaced with my own function to get product by ID (where it eas fetched by product id)
+                if (product) {
+                    const cost = product.price * item;
+                    return (
+                      <tr key={productId}>
+                        <td>{product.name}</td>
+                        <td>
+                          <ProductCard
+                            product={product}
+                            quantity={item}
+                            handleDecrement={handleDecrement}
+                            handleIncrement={handleIncrement}
+                            cartItems={cartItems}
+                            setCartItems={setCartItems}                                 // Pass cartItems and setCartItems to ProductCard
+
+                          />
+                        </td>
+                        <td>${product.price.toFixed(2)}</td>
+                        <td>${cost.toFixed(2)}</td>
+                      </tr>
+                    );
+                  } else {
+                    return null;                                                       // Or handle the case when the product is not found
+                  }
+                })}
+                
             </tbody>
           </table>
           <table>
@@ -115,3 +115,5 @@ return (
     </div>
   );
 } 
+
+

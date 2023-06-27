@@ -29,9 +29,10 @@ import { MdAddShoppingCart } from "react-icons/md"
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai"
 import { BsCashCoin, BsCreditCard } from "react-icons/bs"
 import "./Sidebar.css"
+import ProductCard from "../ProductCard/ProductCard";
 import ShoppingCart from "../ShoppingCart/ShoppingCart"
 
-export default function Sidebar({ products }) {
+export default function Sidebar({ cartItems, handleIncrement, handleDecrement }) {
 	const [isOpen, setIsOpen] = useState(false)
 
 	const handleToggle = () => {
@@ -52,7 +53,13 @@ export default function Sidebar({ products }) {
         <BsCashCoin className="sidebar-icon" onClick={handleToggle} />
         <BsCreditCard className="sidebar-icon" onClick={handleToggle} />
       </div>
-      {isOpen && <ShoppingCart products={products} />} {/* Renders the ShoppingCart component when the cart is open */}
+      {isOpen && <ShoppingCart 
+      isOpen={isOpen}
+      // products={products} 
+      cartItems={cartItems}
+      handleIncrement={handleIncrement}
+      handleDecrement={handleDecrement}
+      />} {/* Renders the ShoppingCart component when the cart is open */}
     </aside>
   );
 }
