@@ -14,19 +14,19 @@ export default function ProductCard({ product, handleDecrement, handleIncrement,
   const handleDecrementClick = () => {
     if (quantity > 0) {
       handleDecrement(product.id);
-      setCartItems((prevCartItems) => ({
-        ...prevCartItems,
-        [product.id]: quantity - 1,
-      }));
+      // setCartItems((prevCartItems) => ({
+      //   ...prevCartItems,
+      //   [product.id]: quantity - 1,
+      // }));
     }
   };
 
   const handleIncrementClick = () => {
     handleIncrement(product.id);
-    setCartItems((prevCartItems) => ({
-      ...prevCartItems,
-      [product.id]: quantity + 1,
-    }));
+    // setCartItems((prevCartItems) => ({
+    //   ...prevCartItems,
+    //   [product.id]: quantity + 1,
+    // }));
   };
 
   // return (

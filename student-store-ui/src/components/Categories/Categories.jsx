@@ -17,8 +17,8 @@ export default function Categories() {
     <div className="categories">
       <div className={`hamburger-menu ${isMenuOpen ? "active" : ""}`} onClick={handleToggleMenu}>
         <div className="line" />
-        <div className="line" />
-        <div className="line" />
+        {/* <div className="line" />
+        <div className="line" /> */}
       </div>
       <div className={`menu-content ${isMenuOpen ? "open" : ""}`}>
         <ul>

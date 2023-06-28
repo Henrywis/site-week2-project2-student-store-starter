@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 
-export default function Home({ data, prods2, setProds2, handleDecrement, handleIncrement, cartItems}) {
+export default function Home({ products, prods2, setProds2, handleDecrement, handleIncrement, cartItems}) {
 
   const id = useParams().id;
   const [product, setProduct] = React.useState(null)
@@ -44,7 +44,7 @@ export default function Home({ data, prods2, setProds2, handleDecrement, handleI
       ( 
       <>
       
-      <ProductGrid products={data} prods2={prods2} setProds2={setProds2} handleDecrement={handleDecrement}  handleIncrement={handleIncrement} cartItems={cartItems}/>
+      <ProductGrid products={products} prods2={prods2} setProds2={setProds2} handleDecrement={handleDecrement}  handleIncrement={handleIncrement} cartItems={cartItems}/>
     <About />
     <Contact />
     <Footer />

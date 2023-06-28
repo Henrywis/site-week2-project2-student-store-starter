@@ -19,7 +19,7 @@ import ShoppingCart from "../ShoppingCart/ShoppingCart"
 
 export default function App() {
 
-  const [data, setData] = useState([]);
+  const [products, setProducts] = useState([]);
   const [prods2, setProds2] = useState([]);
   const [cartItems, setCartItems] = useState({}); //Initializing cart state to be zero or empty
 
@@ -29,7 +29,7 @@ export default function App() {
         const response = await fetch('https://codepath-store-api.herokuapp.com/store');
         const data = await response.json();
 
-        setData(data.products);
+        setProducts(data.products);
         setProds2(data.products)
         // console.log(data.products)
 
@@ -51,26 +51,37 @@ export default function App() {
   };
 
   const handleDecrement = (productId) => {
-    setCartItems((prevItems) => ({
-      ...prevItems,
-      [productId]: Math.max((prevItems[productId] || 0) - 1, 0) //using updater function for decrement that handles whether product exists or not
-    }));
+    const newCartItems = {...cartItems} // creates a copy;
+    newCartItems[productId] = Math.max((newCartItems[productId] || 0) - 1, 0) // do the logic to update the copy
+    if (newCartItems[productId] === 0) delete newCartItems[productId]; // if the quantity is 0, delete
+    setCartItems(newCartItems);
+
+
+    // setCartItems((prevItems) => ({
+    //   ...prevItems, // creates a copy
+    //   [productId]: Math.max((prevItems[productId] || 0) - 1, 0) //using updater function for decrement that handles whether product exists or not
+    // }));
+
+    //create a copy of my state
+    //do all the logic to update that copy
+    //call my setter function (setCartItems) to the new and improved copy.
   }; //5. Defined the handleIncrement, handleDecrement functions to be passed in the ProductCard
 
-
+  console.log("CartItems : ", cartItems);
+  console.log("products in app.jsx: ", products);
   return (
     <div className="app">
       <BrowserRouter>
         <main>
           <Navbar />
           <div className="content-wrapper">
-            <Sidebar cartItems={cartItems} />
+            <Sidebar products={products} cartItems={cartItems} />
             <Routes>
               <Route
                 path="/"
                 element={
                   <Home
-                    data={data}
+                    products={products}
                     prods2={prods2}
                     setProds2={setProds2}
                     handleDecrement={handleDecrement}
@@ -79,18 +90,18 @@ export default function App() {
                   />
                 }
               />
-              <Route
+              {/* <Route
                 path="/shopping-cart"
                 element={
                   <ShoppingCart
-                    products={data}
+                    products={products}
                     handleDecrement={handleDecrement}
                     handleIncrement={handleIncrement}
                     cartItems={cartItems}                   // Pass cartItems and setCartItems to ShoppingCart
                     setCartItems={setCartItems}
                   />
                 }
-              />
+              /> */}
             </Routes>
           </div>
           <Footer />

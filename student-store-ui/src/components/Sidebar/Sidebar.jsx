@@ -32,7 +32,7 @@ import "./Sidebar.css"
 import ProductCard from "../ProductCard/ProductCard";
 import ShoppingCart from "../ShoppingCart/ShoppingCart"
 
-export default function Sidebar({ cartItems, handleIncrement, handleDecrement }) {
+export default function Sidebar({ products, cartItems, handleIncrement, handleDecrement }) {
 	const [isOpen, setIsOpen] = useState(false)
 
 	const handleToggle = () => {
@@ -55,7 +55,7 @@ export default function Sidebar({ cartItems, handleIncrement, handleDecrement })
       </div>
       {isOpen && <ShoppingCart 
       isOpen={isOpen}
-      // products={products} 
+      products={products} 
       cartItems={cartItems}
       handleIncrement={handleIncrement}
       handleDecrement={handleDecrement}

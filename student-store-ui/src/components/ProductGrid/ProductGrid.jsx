@@ -71,7 +71,7 @@ export default function ProductGrid({ products, prods2, setProds2, handleDecreme
       <div className="product-grid">
         {prods2.length > 0 ? (
           prods2.map((product, i) => {
-            console.log(product)
+            // console.log(product)
             return (
             <ProductCard 
               product={product} 
