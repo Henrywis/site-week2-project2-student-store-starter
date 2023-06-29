@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ShoppingCart.css";
+import { MdAddShoppingCart } from "react-icons/md"
 import ProductCard from "../ProductCard/ProductCard";
 
 export default function ShoppingCart({ products, handleIncrement, handleDecrement, cartItems, setCartItems }) {
@@ -55,7 +56,7 @@ export default function ShoppingCart({ products, handleIncrement, handleDecremen
 
 return (
     <div className="shopping-cart">
-      <h2><span role="img" aria-label="Cart">🛒</span>{" "} Shopping Cart</h2>              {/*  6. To Display the title with cart emoji */}
+      <h2><MdAddShoppingCart/>{" "} Shopping Cart</h2>              {/*  6. To Display the title with cart emoji */}
       {Object.keys(cartItems).length === 0 ? (                                           // 7.  Check if cartItems is empty
         <p>You have no Items in your shopping cart</p>                                   // 8. if empty, Display a message for an empty cart
       ) : (                                                                              //else create a table with the folloeing information
