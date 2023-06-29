@@ -43,12 +43,12 @@ export default function ShoppingCart({ products, handleIncrement, handleDecremen
     return subtotal + taxes;
   };
 
-//   const [cartnumOfItemss, setCartnumOfItemss] = useState(() => {
-//     const initialCartnumOfItemss = {};
+//   const [cartItems, setCartItems] = useState(() => {
+//     const initialCartItems = {};
 //     products.forEach((product) => {
-//       initialCartnumOfItemss[product.id] = 0; // Initialize quantity to 0 for each product
+//       initialCartItems[product.id] = 0; // Initialize quantity to 0 for each product
 //     });
-//     return initialCartnumOfItemss;
+//     return initialCartItems;
 //   });
 
 
@@ -57,7 +57,7 @@ return (
     <div className="shopping-cart">
       <h2><span role="img" aria-label="Cart">🛒</span>{" "} Shopping Cart</h2>              {/*  6. To Display the title with cart emoji */}
       {Object.keys(cartItems).length === 0 ? (                                           // 7.  Check if cartItems is empty
-        <p>You have no numOfItemss in your shopping cart</p>                                   // 8. if empty, Display a message for an empty cart
+        <p>You have no Items in your shopping cart</p>                                   // 8. if empty, Display a message for an empty cart
       ) : (                                                                              //else create a table with the folloeing information
         <>
           <table>
