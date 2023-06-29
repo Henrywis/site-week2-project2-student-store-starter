@@ -1,14 +1,30 @@
 .shopping-cart {
     color: white;
-    margin-top: 20px;
+    margin-top: 0px;
+    transition: margin-top 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
   }
   
+  .sidebar.open .shopping-cart {
+    margin-top: -100px; 
+  }
+
   .shopping-cart h2 {
     display: flex;
     align-items: center;
+    justify-content: center;
     color: white;
   }
   
+  .shopping-cart p {
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+  }
   .shopping-cart table {
     width: 100%;
     margin-top: 10px;
