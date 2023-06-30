@@ -3,7 +3,7 @@ import "./CheckoutForm.css";
 import { useState } from "react";
 import { BsCashCoin, BsCreditCard } from "react-icons/bs"
 
-export default function CheckoutForm ({ isOpen, shoppingCart, checkoutForm, handleOnCheckoutFormChange, handleOnSubmitCheckoutForm, emailError, success }) {
+export default function CheckoutForm ({ isOpen, shoppingCart, checkoutForm, handleOnCheckoutFormChange, handleOnSubmitCheckoutForm, emailError, success, nameError}) {
     // const [checkoutForm, setCheckOutForm] = useState({name: "", email: ""}); //Take to App.jsx as Diogo prev advised
   
     //isOpen prop is already implemented in the Sidebar.jsx
@@ -36,10 +36,22 @@ export default function CheckoutForm ({ isOpen, shoppingCart, checkoutForm, hand
                         />
                     </label>
 
-                    {emailError && <p className="error">Error: Invalid email format</p>}
-                    {success && <p className="success">Success!</p>}
-
                     <button type="submit" className="checkout-button">Checkout</button>
+
+                    {emailError ? (
+                        <div className="error-popup">
+                            <p>Error: Invalid email format</p>
+                        </div>
+                    ) : success ? (
+                        <div className="success-popup">
+                            <p>Success!</p>
+                        </div>
+                    ) : nameError ? (
+                        <div className="error-popup">
+                            <p>Error: Name is required</p>
+                        </div>
+                    ) : null}
+                    {/* states for these statuses have been initialized in App.jsx */}
                 </form>
             </div>
 

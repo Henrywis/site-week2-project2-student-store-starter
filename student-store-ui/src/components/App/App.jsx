@@ -16,6 +16,7 @@ export default function App() {
   const [cartItems, setCartItems] = useState({}); //Initializing cart state to be zero or empty
   const [checkoutForm, setCheckoutForm] = useState({name: "", email: ""}); 
   const [emailError, setEmailError] = useState(false);
+  const [nameError, setNameError] = useState(false);
   const [success, setSuccess] = useState(false);
 
 
@@ -78,23 +79,38 @@ export default function App() {
   const handleOnSubmitCheckoutForm = (event) => {
     event.preventDefault();
     // const { name, email } = checkoutForm;
-    const { email } = checkoutForm;
+    const { name, email } = checkoutForm;
 
     const validateEmail = (email) => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email); 
-    };//email format checker for missing "@"
+    };//email format checker for missing "@" to return error msg
 
+    //this updates the state of email checker status
     if (!validateEmail(email)){
       setEmailError(true);
       setSuccess(false);
-    } else {
-      setEmailError(false);
-      setSuccess(true);
-
-      setCartItems({});
-      setCheckoutForm({ name: "", email: "" });
+      return;
     }
+
+    //this updates the state of name checker status if name field is empty or not
+    if (name.trim() === "") {
+      setNameError(true);
+      setSuccess(false);
+      return;
+    }
+
+    //after checkers and making sure name & email are valid, clear cartitems,
+    //update states of emailError, success, nameError and reset checkout form to empty str
+    setEmailError(false);
+    setNameError(false);
+    setSuccess(true);
+    setCartItems({});
+    setCheckoutForm({ name: "", email: "" });
+
+    console.log("success", success)
+    console.log("nameError", nameError)
+    
   };
 
   return (
@@ -103,7 +119,10 @@ export default function App() {
         <main>
           <Navbar />
           <div className="content-wrapper">
-            <Sidebar products={products} cartItems={cartItems} checkoutForm={checkoutForm} handleOnCheckoutFormChange={handleOnCheckoutFormChange} handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}/>
+            <Sidebar products={products} cartItems={cartItems} checkoutForm={checkoutForm} handleOnCheckoutFormChange={handleOnCheckoutFormChange} handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
+            emailError={emailError}
+            success={success}
+            nameError={nameError}/>
             <Routes>
               <Route
                 path="/"
