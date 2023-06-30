@@ -3,9 +3,11 @@ import "./CheckoutForm.css";
 import { useState } from "react";
 import { BsCashCoin, BsCreditCard } from "react-icons/bs"
 
-export default function CheckoutForm ({ isOpen, shoppingCart, checkoutForm, handleOnCheckoutFormChange, handleOnSubmitCheckoutForm }) {
-    // const [checkOutForm, setCheckOutForm] = useState({name: "", email: ""}); //Take to App.jsx as Diogo prev advised
-
+export default function CheckoutForm ({ isOpen, shoppingCart, checkoutForm, handleOnCheckoutFormChange, handleOnSubmitCheckoutForm, emailError, success }) {
+    // const [checkoutForm, setCheckOutForm] = useState({name: "", email: ""}); //Take to App.jsx as Diogo prev advised
+  
+    //isOpen prop is already implemented in the Sidebar.jsx
+    //shoppingCart state is being updated in the global location, App.jsx
     return (
         <div className="checkout-form">
             <div className="payment-info">
@@ -34,7 +36,10 @@ export default function CheckoutForm ({ isOpen, shoppingCart, checkoutForm, hand
                         />
                     </label>
 
-                    <button type="submit">Submit Order</button>
+                    {emailError && <p className="error">Error: Invalid email format</p>}
+                    {success && <p className="success">Success!</p>}
+
+                    <button type="submit" className="checkout-button">Checkout</button>
                 </form>
             </div>
 

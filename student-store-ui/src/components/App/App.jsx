@@ -3,17 +3,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from "../Navbar/Navbar"
 import Sidebar from "../Sidebar/Sidebar"
 import Home from "../Home/Home"
-import Banner from "../Banner/Banner"
-import Search from "../Search/Search"
-import ProductGrid from "../ProductGrid/ProductGrid"
-import About from "../About/About"
-import Contact from "../Contact/Contact"
-import ProductCard from "../ProductCard/ProductCard"
 import Footer from "../Footer/Footer"
 import { useState, useEffect } from "react"
 import "./App.css"
-import Categories from "../Categories/Categories"
-import ShoppingCart from "../ShoppingCart/ShoppingCart"
+
 
 
 export default function App() {
@@ -21,7 +14,9 @@ export default function App() {
   const [products, setProducts] = useState([]);
   const [prods2, setProds2] = useState([]);
   const [cartItems, setCartItems] = useState({}); //Initializing cart state to be zero or empty
-  const [checkoutForm, setcheckoutForm] = useState({name: "", email: ""}); 
+  const [checkoutForm, setCheckoutForm] = useState({name: "", email: ""}); 
+  const [emailError, setEmailError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
 
   useEffect(() => {
@@ -74,7 +69,7 @@ export default function App() {
 
   const handleOnCheckoutFormChange = (event) => {
     const { name, value } = event.target;
-    setcheckoutForm((prevForm) => ({
+    setCheckoutForm((prevForm) => ({
       ...prevForm,
       [name]: value,
     }));
@@ -82,7 +77,26 @@ export default function App() {
   
   const handleOnSubmitCheckoutForm = (event) => {
     event.preventDefault();
-  }
+    // const { name, email } = checkoutForm;
+    const { email } = checkoutForm;
+
+    const validateEmail = (email) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email); 
+    };
+
+    if (!validateEmail(email)){
+      setEmailError(true);
+      setSuccess(false);
+    } else {
+      setEmailError(false);
+      setSuccess(true);
+
+      setCartItems({});
+      setCheckoutForm({ name: "", email: "" });
+    }
+  };
+  
   return (
     <div className="app">
       <BrowserRouter>
@@ -104,18 +118,6 @@ export default function App() {
                   />
                 }
               />
-              {/* <Route
-                path="/shopping-cart"
-                element={
-                  <ShoppingCart
-                    products={products}
-                    handleDecrement={handleDecrement}
-                    handleIncrement={handleIncrement}
-                    cartItems={cartItems}                   // Pass cartItems and setCartItems to ShoppingCart
-                    setCartItems={setCartItems}
-                  />
-                }
-              /> */}
             </Routes>
           </div>
           <Footer />

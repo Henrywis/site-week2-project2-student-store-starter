@@ -5,7 +5,7 @@ import ProductCard from "../ProductCard/ProductCard";
 
 export default function ShoppingCart({ products, handleIncrement, handleDecrement, cartItems, setCartItems }) {
   // console.log("products in shopping cart .jsx: ", products);
-    //receives cartnumOfItemss, setCartnumOfItemss as props from App.jsx
+    //receives cartItems, setCartItems as props from App.jsx
   const getProductById = (productId) => {
     // console.log({products})
     if (products && products.length > 0) {
