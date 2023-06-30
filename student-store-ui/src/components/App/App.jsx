@@ -21,7 +21,7 @@ export default function App() {
   const [products, setProducts] = useState([]);
   const [prods2, setProds2] = useState([]);
   const [cartItems, setCartItems] = useState({}); //Initializing cart state to be zero or empty
-  const [checkOutForm, setCheckOutForm] = useState({name: "", email: ""}); 
+  const [checkoutForm, setcheckoutForm] = useState({name: "", email: ""}); 
 
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export default function App() {
 
   const handleOnCheckoutFormChange = (event) => {
     const { name, value } = event.target;
-    setCheckOutForm((prevForm) => ({
+    setcheckoutForm((prevForm) => ({
       ...prevForm,
       [name]: value,
     }));
@@ -89,7 +89,7 @@ export default function App() {
         <main>
           <Navbar />
           <div className="content-wrapper">
-            <Sidebar products={products} cartItems={cartItems} checkOutForm={checkOutForm} />
+            <Sidebar products={products} cartItems={cartItems} checkoutForm={checkoutForm} handleOnCheckoutFormChange={handleOnCheckoutFormChange} handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}/>
             <Routes>
               <Route
                 path="/"

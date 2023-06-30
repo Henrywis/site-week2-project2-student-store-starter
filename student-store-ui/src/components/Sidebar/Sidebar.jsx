@@ -7,7 +7,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import ShoppingCart from "../ShoppingCart/ShoppingCart"
 import CheckoutForm from "../CheckoutForm/CheckoutForm"
 
-export default function Sidebar({ products, cartItems, handleIncrement, handleDecrement, checkOutForm, handleOnCheckoutFormChange, handleOnSubmitCheckoutForm }) {
+export default function Sidebar({ products, cartItems, handleIncrement, handleDecrement, checkoutForm, handleOnCheckoutFormChange, handleOnSubmitCheckoutForm }) {
 	const [isOpen, setIsOpen] = useState(false)
 
 	const handleToggle = () => {
@@ -38,7 +38,7 @@ export default function Sidebar({ products, cartItems, handleIncrement, handleDe
       {isOpen && <CheckoutForm
       isOpen={isOpen}
       shoppingCart={cartItems}
-      checkOutForm={checkOutForm}
+      checkoutForm={checkoutForm}
       handleOnCheckoutFormChange={handleOnCheckoutFormChange}
       handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
       />}

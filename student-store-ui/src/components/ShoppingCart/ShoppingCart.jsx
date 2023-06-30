@@ -58,7 +58,7 @@ return (
     <div className="shopping-cart">
       <h2><MdAddShoppingCart/>{" "} Shopping Cart</h2>              {/*  6. To Display the title with cart emoji */}
       {Object.keys(cartItems).length === 0 ? (                                           // 7.  Check if cartItems is empty
-        <p>You have no Items in your shopping cart</p>                                   // 8. if empty, Display a message for an empty cart
+        <p>No items added to cart yet. Start shopping now!</p>                                   // 8. if empty, Display a message for an empty cart
       ) : (                                                                              //else create a table with the folloeing information
         <>
           <table>
