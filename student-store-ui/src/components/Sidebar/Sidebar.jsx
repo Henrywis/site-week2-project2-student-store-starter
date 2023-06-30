@@ -5,8 +5,9 @@ import { BsCashCoin, BsCreditCard } from "react-icons/bs"
 import "./Sidebar.css"
 import ProductCard from "../ProductCard/ProductCard";
 import ShoppingCart from "../ShoppingCart/ShoppingCart"
+import CheckoutForm from "../CheckoutForm/CheckoutForm"
 
-export default function Sidebar({ products, cartItems, handleIncrement, handleDecrement }) {
+export default function Sidebar({ products, cartItems, handleIncrement, handleDecrement, checkOutForm, handleOnCheckoutFormChange, handleOnSubmitCheckoutForm }) {
 	const [isOpen, setIsOpen] = useState(false)
 
 	const handleToggle = () => {
@@ -34,6 +35,13 @@ export default function Sidebar({ products, cartItems, handleIncrement, handleDe
       handleIncrement={handleIncrement}
       handleDecrement={handleDecrement}
       />} {/* Renders the ShoppingCart component when the cart is open */}
+      {isOpen && <CheckoutForm
+      isOpen={isOpen}
+      shoppingCart={cartItems}
+      checkOutForm={checkOutForm}
+      handleOnCheckoutFormChange={handleOnCheckoutFormChange}
+      handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
+      />}
     </aside>
   );
 }

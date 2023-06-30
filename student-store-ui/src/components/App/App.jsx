@@ -21,6 +21,8 @@ export default function App() {
   const [products, setProducts] = useState([]);
   const [prods2, setProds2] = useState([]);
   const [cartItems, setCartItems] = useState({}); //Initializing cart state to be zero or empty
+  const [checkOutForm, setCheckOutForm] = useState({name: "", email: ""}); 
+
 
   useEffect(() => {
     async function fetchProds() {
@@ -68,13 +70,26 @@ export default function App() {
 
   console.log("CartItems : ", cartItems);
   console.log("products in app.jsx: ", products);
+
+
+  const handleOnCheckoutFormChange = (event) => {
+    const { name, value } = event.target;
+    setCheckOutForm((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
+  
+  const handleOnSubmitCheckoutForm = (event) => {
+    event.preventDefault();
+  }
   return (
     <div className="app">
       <BrowserRouter>
         <main>
           <Navbar />
           <div className="content-wrapper">
-            <Sidebar products={products} cartItems={cartItems} />
+            <Sidebar products={products} cartItems={cartItems} checkOutForm={checkOutForm} />
             <Routes>
               <Route
                 path="/"
