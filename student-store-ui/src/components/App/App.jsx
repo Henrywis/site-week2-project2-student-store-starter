@@ -83,7 +83,7 @@ export default function App() {
     const validateEmail = (email) => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email); 
-    };
+    };//email format checker for missing "@"
 
     if (!validateEmail(email)){
       setEmailError(true);
@@ -96,7 +96,7 @@ export default function App() {
       setCheckoutForm({ name: "", email: "" });
     }
   };
-  
+
   return (
     <div className="app">
       <BrowserRouter>
