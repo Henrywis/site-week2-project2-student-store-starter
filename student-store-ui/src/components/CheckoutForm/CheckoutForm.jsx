@@ -26,5 +26,5 @@ export default function CheckoutForm ({ isOpen, shoppingCart, checkOutForm, hand
 
           <button type="submit">Submit Order</button>
         </form>
-      );
+    );
 }
