@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from "../Navbar/Navbar"
 import Sidebar from "../Sidebar/Sidebar"
 import Home from "../Home/Home"
-import Footer from "../Footer/Footer"
 import { useState, useEffect } from "react"
 import "./App.css"
 
@@ -134,39 +133,41 @@ export default function App() {
               checkoutFormData={checkoutFormData}
               // handleOnCheckoutFormChange={handleOnCheckoutFormChange}
               handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
-            emailError={emailError}
-            success={success}
-            nameError={nameError}/>
-            <Routes>
-              <Route
-                path="/*"
-                element={
-                  <Home
-                    products={products}
-                    prods2={prods2}
-                    setProds2={setProds2}
-                    handleDecrement={handleDecrement}
-                    handleIncrement={handleIncrement}
-                    cartItems={cartItems}
-                  />
-                }
-              />
-              <Route
-                path="/products/:id"
-                element={
-                  <Home
-                    products={products}
-                    prods2={prods2}
-                    setProds2={setProds2}
-                    handleDecrement={handleDecrement}
-                    handleIncrement={handleIncrement}
-                    cartItems={cartItems}
-                  />
-                }
-              />
-            </Routes>
+              emailError={emailError}
+              success={success}
+              nameError={nameError}/>
+            />
+            <div className="home-content">
+              <Routes>
+                <Route
+                  path="/*"
+                  element={
+                    <Home
+                      products={products}
+                      prods2={prods2}
+                      setProds2={setProds2}
+                      handleDecrement={handleDecrement}
+                      handleIncrement={handleIncrement}
+                      cartItems={cartItems}
+                    />
+                  }
+                />
+                <Route
+                  path="/products/:id"
+                  element={
+                    <Home
+                      products={products}
+                      prods2={prods2}
+                      setProds2={setProds2}
+                      handleDecrement={handleDecrement}
+                      handleIncrement={handleIncrement}
+                      cartItems={cartItems}
+                    />
+                  }
+                />
+              </Routes>
+              </div>
           </div>
-          <Footer />
         </main>
       </BrowserRouter>
     </div>

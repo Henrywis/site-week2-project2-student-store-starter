@@ -89,7 +89,7 @@ export default function CheckoutForm ({
                         // onChange={handleOnCheckoutFormChange}
                         />
                     </label>
-                    {formErrors && <p>{formErrors}</p>}
+                    {formErrors && <p className="form-errors">{formErrors}</p>}
                     <button type="submit" className="checkout-button">Checkout</button>
 
 

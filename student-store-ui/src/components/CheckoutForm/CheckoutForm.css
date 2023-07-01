@@ -52,6 +52,32 @@
   .checkout-button:hover {
     background-color: #0056b3;
   }
+
+  .form-errors {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+  
+    /* Add animation styles */
+    animation-name: slideIn;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+  }
+  
+  @keyframes slideIn {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
   
   /* .error {
     color: red;
@@ -72,7 +98,7 @@
     text-align: center;
     font-weight: bold; */
   
-    .error-popup,
+    /* .error-popup,
     .success-popup {
       position: absolute;
       background-color: #ff9999;
@@ -109,4 +135,4 @@
       visibility: visible;
       opacity: 1;
     }
-    
+     */
