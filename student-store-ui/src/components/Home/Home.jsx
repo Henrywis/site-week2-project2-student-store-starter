@@ -12,45 +12,44 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 
-export default function Home({ products, prods2, setProds2, handleDecrement, handleIncrement, cartItems}) {
+export default function Home({ products, prods2, setProds2, handleDecrement, handleIncrement, cartItems }) {
 
   const id = useParams().id;
   const [product, setProduct] = React.useState(null)
 
-    useEffect(() => {
-        async function fetchProds() {
-          
-          try {
-            const response = await fetch(`https://codepath-store-api.herokuapp.com/store/${id}`);
-            const data = await response.json();
-    
+  useEffect(() => {
+    async function fetchProds() {
 
-            setProduct(data.product)    
-            //console.log("Fetched products: ", data.products[0].name);
-          } catch (error) {
-            console.log("Error fetching products:" , error);
-          }
-        };
-        if (id) fetchProds();
-      }, [id]);
+      try {
+        const response = await fetch(`https://codepath-store-api.herokuapp.com/store/${id}`);
+        const data = await response.json();
+
+
+        setProduct(data.product)
+        //console.log("Fetched products: ", data.products[0].name);
+      } catch (error) {
+        console.log("Error fetching products:", error);
+      }
+    };
+    if (id) fetchProds();
+  }, [id]);
   return (
     <div className="home">
       <Banner />
       {/* <Search /> */}
       {/* <Categories /> */}
-      {(id && product !== null) ? 
+      {(id && product !== null) ?
         <ProductCard product={product} />
-        : 
-      ( 
-      <>
-      
-      <ProductGrid products={products} prods2={prods2} setProds2={setProds2} handleDecrement={handleDecrement}  handleIncrement={handleIncrement} cartItems={cartItems}/>
-    <About />
-    <Contact />
-    <Footer />
-      
-      </>
-      )}
+        :
+        (
+          <>
+            <ProductGrid products={products} prods2={prods2} setProds2={setProds2} handleDecrement={handleDecrement} handleIncrement={handleIncrement} cartItems={cartItems} />
+            <About />
+            <Contact />
+            <Footer />
+
+          </>
+        )}
 
     </div>
   );

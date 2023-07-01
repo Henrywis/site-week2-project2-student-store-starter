@@ -14,7 +14,7 @@ export default function App() {
   const [products, setProducts] = useState([]);
   const [prods2, setProds2] = useState([]);
   const [cartItems, setCartItems] = useState({}); //Initializing cart state to be zero or empty
-  const [checkoutForm, setCheckoutForm] = useState({name: "", email: ""}); 
+  const [checkoutFormData, setCheckoutFormData] = useState({name: "", email: ""}); 
   const [emailError, setEmailError] = useState(false);
   const [nameError, setNameError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -64,22 +64,23 @@ export default function App() {
     //call my setter function (setCartItems) to the new and improved copy.
   }; //5. Defined the handleIncrement, handleDecrement functions to be passed in the ProductCard
 
-  console.log("CartItems : ", cartItems);
-  console.log("products in app.jsx: ", products);
+  // console.log("CartItems : ", cartItems);
+  // console.log("products in app.jsx: ", products);
 
 
-  const handleOnCheckoutFormChange = (event) => {
-    const { name, value } = event.target;
-    setCheckoutForm((prevForm) => ({
-      ...prevForm,
-      [name]: value,
-    }));
-  };
+  // const handleOnCheckoutFormChange = (event) => {
+  //   // event.preventDefault();
+  //   const { name, value } = event.target;
+  //   setCheckoutFormData((prevForm) => ({
+  //     ...prevForm,
+  //     [name]: value,
+  //   }));
+  // };
   
   const handleOnSubmitCheckoutForm = (event) => {
     event.preventDefault();
     // const { name, email } = checkoutForm;
-    const { name, email } = checkoutForm;
+    const { name, email } = checkoutFormData;
 
     const validateEmail = (email) => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -92,6 +93,10 @@ export default function App() {
       setSuccess(false);
       return;
     }
+    else {
+      setEmailError(false);
+      setSuccess(true);
+    }
 
     //this updates the state of name checker status if name field is empty or not
     if (name.trim() === "") {
@@ -99,18 +104,22 @@ export default function App() {
       setSuccess(false);
       return;
     }
+    else {
+      setNameError(false);
+      setSuccess(true);
+    }
 
     //after checkers and making sure name & email are valid, clear cartitems,
     //update states of emailError, success, nameError and reset checkout form to empty str
-    setEmailError(false);
-    setNameError(false);
-    setSuccess(true);
-    setCartItems({});
-    setCheckoutForm({ name: "", email: "" });
+    // setEmailError(false);
+    // setNameError(false);
+    // setSuccess(true);
+    // setCartItems({});
+    // setCheckoutFormData({ name: "", email: "" });
 
     console.log("success", success)
     console.log("nameError", nameError)
-    
+    console.log("the form was submitted", checkoutFormData);
   };
 
   return (
@@ -119,13 +128,31 @@ export default function App() {
         <main>
           <Navbar />
           <div className="content-wrapper">
-            <Sidebar products={products} cartItems={cartItems} checkoutForm={checkoutForm} handleOnCheckoutFormChange={handleOnCheckoutFormChange} handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
+            <Sidebar 
+              products={products} 
+              cartItems={cartItems} 
+              checkoutFormData={checkoutFormData}
+              // handleOnCheckoutFormChange={handleOnCheckoutFormChange}
+              handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
             emailError={emailError}
             success={success}
             nameError={nameError}/>
             <Routes>
               <Route
-                path="/"
+                path="/*"
+                element={
+                  <Home
+                    products={products}
+                    prods2={prods2}
+                    setProds2={setProds2}
+                    handleDecrement={handleDecrement}
+                    handleIncrement={handleIncrement}
+                    cartItems={cartItems}
+                  />
+                }
+              />
+              <Route
+                path="/products/:id"
                 element={
                   <Home
                     products={products}

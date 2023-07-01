@@ -2,14 +2,14 @@ import React from "react";
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
 import { HiOutlineMinusCircle, HiOutlinePlusCircle } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function ProductCard({ product, handleDecrement, handleIncrement, quantity, setCartItems }) {
-  const navigate = useNavigate(); //2. pass parameters that will handle the increment, decrement
-  //4. passed the quantity param, so that it inherits and updates, based on onclick functions and not fixed to zero
-  const handleProductClick = () => {
-    navigate(`/products/${product.id}`);
-  };
+  // const navigate = useNavigate(); //2. pass parameters that will handle the increment, decrement
+  // //4. passed the quantity param, so that it inherits and updates, based on onclick functions and not fixed to zero
+  // const handleProductClick = () => {
+  //   navigate(`/products/${product.id}`);
+  // };
 
   const handleDecrementClick = () => {
     if (quantity > 0) {
